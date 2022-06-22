@@ -16,6 +16,9 @@ const networkConfig: networkConfigInfo = {
   },
 }
 
-export const config = {
-  networkConfig,
-}
+const developmentChains: Array<string> = ["hardhat", "localhost"]
+
+const DECIMALS = "18"
+const INITIAL_PRICE = "2000000000000000000000" // 2000
+
+export { networkConfig, developmentChains, DECIMALS, INITIAL_PRICE }

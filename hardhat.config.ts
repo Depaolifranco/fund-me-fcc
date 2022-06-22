@@ -23,27 +23,43 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
+const PRIVATE_KEY =
+  process.env.PRIVATE_KEY ||
+  "0x362680966698e617d0d59ec2f28cd4923d47d63cae0cdbfb939229f71579a36f"
+
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
   },
-  defaultNetwork: "rinkeby",
+  defaultNetwork: "hardhat",
   networks: {
+    hardhat: {
+      chainId: 31337,
+    },
     rinkeby: {
-      url: "https://eth-rinkeby.alchemyapi.io/v2/AyCfwB5UEXzl7tvEBMtAwj8D0Yv1BMoC",
-      accounts: [],
+      url: RINKEBY_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 4,
     },
   },
   gasReporter: {
-    enabled: process.env.REPORT_GAS !== undefined,
+    enabled: false,
     currency: "USD",
+    outputFile: "gas-report.txt",
+    noColors: true,
+    // coinmarketcap: COINMARKETCAP_API_KEY,
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      rinkeby: process.env.ETHERSCAN_API_KEY,
+    },
   },
   namedAccounts: {
     deployer: {
-      deploy: 0,
+      default: 0,
+      1: 0,
     },
   },
 }
