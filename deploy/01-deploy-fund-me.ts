@@ -24,6 +24,7 @@ const deployFundMe: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     from: deployer,
     args: args,
     log: true,
+    waitConfirmations: 5,
   })
 
   if (

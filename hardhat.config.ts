@@ -25,6 +25,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const PRIVATE_KEY =
   process.env.PRIVATE_KEY ||
   "0x362680966698e617d0d59ec2f28cd4923d47d63cae0cdbfb939229f71579a36f"
