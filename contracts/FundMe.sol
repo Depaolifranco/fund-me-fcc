@@ -1,10 +1,11 @@
+// Este contract está siguiendo con las recomendaciones especificadas en https://docs.soliditylang.org/en/v0.8.15/style-guide.html
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.8;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PrinceConverter.sol";
 
-error NotOwner();
+error FundMe_NotOwner();
 
 contract FundMe {
     using PriceConverter for uint256;
@@ -35,7 +36,7 @@ contract FundMe {
     
     modifier onlyOwner {
         // require(msg.sender == owner);
-        if (msg.sender != i_owner) revert NotOwner();
+        if (msg.sender != i_owner) revert FundMe_NotOwner();
         _;
     }
     
